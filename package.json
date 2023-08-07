@@ -1,0 +1,12 @@
+{
+    "name": "MySQL_Flow",
+    "description": "The Flow for uploding and updating the Data in Database via Node-Red",
+    "version": "0.0.1",
+    "dependencies": {},
+    "node-red": {
+        "settings": {
+            "flowFile": "flow.json",
+            "credentialsFile": "flow_cred.json"
+        }
+    }
+}
