@@ -1,1 +1,653 @@
-[]
+[
+    {
+        "id": "156af6be40fd3590",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "71d70956cd5f1433",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f81072a5963a1ca4",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "localhost",
+        "port": "3306",
+        "db": "new_schema",
+        "tz": "±hh:mm",
+        "charset": "UTF8"
+    },
+    {
+        "id": "a552f665d5a8d34a",
+        "type": "ui_group",
+        "name": "Add Data",
+        "tab": "ef84596ce9c52420",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e8d17b8f2c4af764",
+        "type": "ui_group",
+        "name": "View Information",
+        "tab": "ef84596ce9c52420",
+        "order": 2,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0851d8b33da7b635",
+        "type": "ui_group",
+        "name": "Update Information",
+        "tab": "ef84596ce9c52420",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ef84596ce9c52420",
+        "type": "ui_tab",
+        "name": "My Databse MySQL",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "689e788fba8ffd8b",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "46b1245df4a3c931",
+        "type": "mysql",
+        "z": "71d70956cd5f1433",
+        "mydb": "f81072a5963a1ca4",
+        "name": "",
+        "x": 490,
+        "y": 80,
+        "wires": [
+            [
+                "f2f74f5dc4a2671a",
+                "ee3fc32b27660f7d"
+            ]
+        ]
+    },
+    {
+        "id": "cd63f8c23f7e6135",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Insert",
+        "func": "var id = msg.payload.id;\nvar name = msg.payload.Name;\nvar age = msg.payload.Age;\nvar country = msg.payload.Country;\nvar height = msg.payload.Height;\n\nmsg.topic = 'INSERT INTO `new_schema`.`new_table_info`(`id`,`Name`,`age`,`Cuntry`,`Height`) VALUES('+id+',\"'+name+'\",'+age+',\"'+country+'\",'+height+');';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 80,
+        "wires": [
+            [
+                "46b1245df4a3c931"
+            ]
+        ]
+    },
+    {
+        "id": "f2f74f5dc4a2671a",
+        "type": "debug",
+        "z": "71d70956cd5f1433",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "d507d401768841a8",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Select",
+        "func": "msg.topic = 'SELECT * FROM new_schema.new_table_info;';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 220,
+        "wires": [
+            [
+                "ab549ae2b15ebdb0"
+            ]
+        ]
+    },
+    {
+        "id": "528a6d37542db72f",
+        "type": "ui_form",
+        "z": "71d70956cd5f1433",
+        "name": "Table for MySQL",
+        "label": "",
+        "group": "a552f665d5a8d34a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "id",
+                "value": "id",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Name",
+                "value": "Name",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Age",
+                "value": "Age",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Country",
+                "value": "Country",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Height",
+                "value": "Height",
+                "type": "number",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "id": "",
+            "Name": "",
+            "Age": "",
+            "Country": "",
+            "Height": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 150,
+        "y": 80,
+        "wires": [
+            [
+                "cd63f8c23f7e6135"
+            ]
+        ]
+    },
+    {
+        "id": "e495b83b0926d78e",
+        "type": "ui_template",
+        "z": "71d70956cd5f1433",
+        "group": "e8d17b8f2c4af764",
+        "name": "",
+        "order": 1,
+        "width": "9",
+        "height": "4",
+        "format": "<html>\n\n<head>\n    <style>\n        #history {\n            font-family: \"Arial\";\n            border-collapse: collapse;\n            width: 100%;\n        }\n\n        #history td,\n        #history th {\n            border: 1px solid #ffffff;\n            padding: 8px;\n        }\n\n        #history tr:nth-child(even) {\n            background-color: #ffffff;\n        }\n\n        #history tr:hover {\n            background-color: #73E0FD;\n        }\n\n        #history th {\n            padding-top: 12px;\n            padding-bottom: 12px;\n            text-align: center;\n            background-color: #A8E7FC;\n            color: black;\n        }\n    </style>\n</head>\n\n<body>\n    <table id=\"history\" border=\"1\">\n        <tr align=\"center\">\n            <th>ID</th>\n            <th>Name</th>\n            <th>Age</th>\n            <th>Country</th>\n            <th>Height</th>\n        </tr>\n        <tbody>\n            <tr align=\"center\" ng-repeat=\"row in msg.payload\">\n                <td ng-repeat=\"item in row\">{{item}}</td>\n            </tr>\n        </tbody>\n    </table>\n</body>\n\n</html>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 520,
+        "y": 220,
+        "wires": [
+            [
+                "df37d7f6d956bac8"
+            ]
+        ]
+    },
+    {
+        "id": "ab549ae2b15ebdb0",
+        "type": "mysql",
+        "z": "71d70956cd5f1433",
+        "mydb": "f81072a5963a1ca4",
+        "name": "",
+        "x": 350,
+        "y": 220,
+        "wires": [
+            [
+                "e495b83b0926d78e"
+            ]
+        ]
+    },
+    {
+        "id": "df37d7f6d956bac8",
+        "type": "debug",
+        "z": "71d70956cd5f1433",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "ee3fc32b27660f7d",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Trigger select 1",
+        "func": "if (msg.payload.affectedRows == 1)\n{\n    msg.payload = true;\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 80,
+        "wires": [
+            [
+                "28f2a0dfa66421da"
+            ]
+        ]
+    },
+    {
+        "id": "440d3a83d2d99e6a",
+        "type": "ui_numeric",
+        "z": "71d70956cd5f1433",
+        "name": "",
+        "label": "ID",
+        "tooltip": "",
+        "group": "0851d8b33da7b635",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 110,
+        "y": 380,
+        "wires": [
+            [
+                "2ecdf9822e1d6c47"
+            ]
+        ]
+    },
+    {
+        "id": "abbea92d27bc1160",
+        "type": "ui_text_input",
+        "z": "71d70956cd5f1433",
+        "name": "",
+        "label": "Name",
+        "tooltip": "",
+        "group": "0851d8b33da7b635",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 830,
+        "y": 380,
+        "wires": [
+            [
+                "3c8574cb9a03739d"
+            ]
+        ]
+    },
+    {
+        "id": "1f11489d3ca40357",
+        "type": "ui_button",
+        "z": "71d70956cd5f1433",
+        "name": "",
+        "group": "0851d8b33da7b635",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Update",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 460,
+        "wires": [
+            [
+                "92f6452493d7b0cf"
+            ]
+        ]
+    },
+    {
+        "id": "8ddfaa4d5178a253",
+        "type": "mysql",
+        "z": "71d70956cd5f1433",
+        "mydb": "f81072a5963a1ca4",
+        "name": "",
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "c660187d33f6c6c0"
+            ]
+        ]
+    },
+    {
+        "id": "2ecdf9822e1d6c47",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "function 2",
+        "func": "global.set('id', msg.payload);\nvar id = global.get('id');\nmsg.topic = \"Select Name from `new_schema`.`new_table_info`  Where id = \"+id+\";\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 380,
+        "wires": [
+            [
+                "8ddfaa4d5178a253"
+            ]
+        ]
+    },
+    {
+        "id": "92f6452493d7b0cf",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "function 1",
+        "func": "var id = global.get('id')\nvar name = global.get('name')\nmsg.topic = \"UPDATE `new_schema`.`new_table_info` SET `Name` = '\"+name+\"' WHERE `id` = \"+id+\";\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 460,
+        "wires": [
+            [
+                "9e45b50d7f79b14a"
+            ]
+        ]
+    },
+    {
+        "id": "c660187d33f6c6c0",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Extract the name accorfing to the Id",
+        "func": "msg.payload = msg.payload[0].Name;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 380,
+        "wires": [
+            [
+                "abbea92d27bc1160"
+            ]
+        ]
+    },
+    {
+        "id": "3c8574cb9a03739d",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Set the name Globally",
+        "func": "global.set('name', msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e45b50d7f79b14a",
+        "type": "mysql",
+        "z": "71d70956cd5f1433",
+        "mydb": "f81072a5963a1ca4",
+        "name": "",
+        "x": 450,
+        "y": 460,
+        "wires": [
+            [
+                "b392e9f2877db831"
+            ]
+        ]
+    },
+    {
+        "id": "28f2a0dfa66421da",
+        "type": "link out",
+        "z": "71d70956cd5f1433",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "d649d4eda648f0e0"
+        ],
+        "x": 835,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "b392e9f2877db831",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Trigger select 2",
+        "func": "if (msg.payload.affectedRows == 1)\n{\n    msg.payload = true;\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 460,
+        "wires": [
+            [
+                "f752043ac4a293fb"
+            ]
+        ]
+    },
+    {
+        "id": "f752043ac4a293fb",
+        "type": "link out",
+        "z": "71d70956cd5f1433",
+        "name": "link out 2",
+        "mode": "link",
+        "links": [
+            "d649d4eda648f0e0"
+        ],
+        "x": 775,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "d649d4eda648f0e0",
+        "type": "link in",
+        "z": "71d70956cd5f1433",
+        "name": "link in 1",
+        "links": [
+            "28f2a0dfa66421da",
+            "f752043ac4a293fb"
+        ],
+        "x": 75,
+        "y": 220,
+        "wires": [
+            [
+                "d507d401768841a8"
+            ]
+        ]
+    },
+    {
+        "id": "e215b24211f91990",
+        "type": "comment",
+        "z": "71d70956cd5f1433",
+        "name": "Insert Query",
+        "info": "",
+        "x": 130,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "3ad0e1fbdfe3ae3b",
+        "type": "comment",
+        "z": "71d70956cd5f1433",
+        "name": "Select Query",
+        "info": "",
+        "x": 130,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "fbd1318f7cc9ab2c",
+        "type": "comment",
+        "z": "71d70956cd5f1433",
+        "name": "Update Query",
+        "info": "",
+        "x": 130,
+        "y": 320,
+        "wires": []
+    }
+]
