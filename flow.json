@@ -75,7 +75,8 @@
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
+                "edited": true,
+                "reset": false
             },
             "darkTheme": {
                 "default": "#097479",
@@ -403,32 +404,6 @@
         ]
     },
     {
-        "id": "abbea92d27bc1160",
-        "type": "ui_text_input",
-        "z": "71d70956cd5f1433",
-        "name": "",
-        "label": "Name",
-        "tooltip": "",
-        "group": "0851d8b33da7b635",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "mode": "text",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 830,
-        "y": 380,
-        "wires": [
-            [
-                "3c8574cb9a03739d"
-            ]
-        ]
-    },
-    {
         "id": "1f11489d3ca40357",
         "type": "ui_button",
         "z": "71d70956cd5f1433",
@@ -649,5 +624,31 @@
         "x": 130,
         "y": 320,
         "wires": []
+    },
+    {
+        "id": "abbea92d27bc1160",
+        "type": "ui_text_input",
+        "z": "71d70956cd5f1433",
+        "name": "",
+        "label": "Name",
+        "tooltip": "",
+        "group": "0851d8b33da7b635",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 830,
+        "y": 380,
+        "wires": [
+            [
+                "3c8574cb9a03739d"
+            ]
+        ]
     }
 ]
