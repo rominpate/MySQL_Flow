@@ -1,13 +1,5 @@
 [
     {
-        "id": "156af6be40fd3590",
-        "type": "tab",
-        "label": "Flow 1",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "71d70956cd5f1433",
         "type": "tab",
         "label": "Flow 1",
@@ -164,6 +156,28 @@
         }
     },
     {
+        "id": "a35a74f6390dd2ee",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "localhost",
+        "port": "3306",
+        "db": "new_schema",
+        "tz": "±hh:mm",
+        "charset": "UTF8"
+    },
+    {
+        "id": "5bfc4dcdb095996e",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://192.168.158.62:4840/AAS",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
         "id": "46b1245df4a3c931",
         "type": "mysql",
         "z": "71d70956cd5f1433",
@@ -310,7 +324,7 @@
         "name": "",
         "order": 1,
         "width": "9",
-        "height": "4",
+        "height": "7",
         "format": "<html>\n\n<head>\n    <style>\n        #history {\n            font-family: \"Arial\";\n            border-collapse: collapse;\n            width: 100%;\n        }\n\n        #history td,\n        #history th {\n            border: 1px solid #ffffff;\n            padding: 8px;\n        }\n\n        #history tr:nth-child(even) {\n            background-color: #ffffff;\n        }\n\n        #history tr:hover {\n            background-color: #73E0FD;\n        }\n\n        #history th {\n            padding-top: 12px;\n            padding-bottom: 12px;\n            text-align: center;\n            background-color: #A8E7FC;\n            color: black;\n        }\n    </style>\n</head>\n\n<body>\n    <table id=\"history\" border=\"1\">\n        <tr align=\"center\">\n            <th>ID</th>\n            <th>Name</th>\n            <th>Age</th>\n            <th>Country</th>\n            <th>Height</th>\n        </tr>\n        <tbody>\n            <tr align=\"center\" ng-repeat=\"row in msg.payload\">\n                <td ng-repeat=\"item in row\">{{item}}</td>\n            </tr>\n        </tbody>\n    </table>\n</body>\n\n</html>",
         "storeOutMessages": true,
         "fwdInMessages": true,
@@ -392,11 +406,11 @@
         "topicType": "msg",
         "format": "{{value}}",
         "min": 0,
-        "max": 10,
-        "step": 1,
+        "max": "1000",
+        "step": "1",
         "className": "",
-        "x": 110,
-        "y": 380,
+        "x": 70,
+        "y": 420,
         "wires": [
             [
                 "2ecdf9822e1d6c47"
@@ -409,7 +423,7 @@
         "z": "71d70956cd5f1433",
         "name": "",
         "group": "0851d8b33da7b635",
-        "order": 3,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -423,44 +437,12 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 120,
-        "y": 460,
+        "x": 80,
+        "y": 580,
         "wires": [
             [
-                "92f6452493d7b0cf"
-            ]
-        ]
-    },
-    {
-        "id": "8ddfaa4d5178a253",
-        "type": "mysql",
-        "z": "71d70956cd5f1433",
-        "mydb": "f81072a5963a1ca4",
-        "name": "",
-        "x": 390,
-        "y": 380,
-        "wires": [
-            [
-                "c660187d33f6c6c0"
-            ]
-        ]
-    },
-    {
-        "id": "2ecdf9822e1d6c47",
-        "type": "function",
-        "z": "71d70956cd5f1433",
-        "name": "function 2",
-        "func": "global.set('id', msg.payload);\nvar id = global.get('id');\nmsg.topic = \"Select Name from `new_schema`.`new_table_info`  Where id = \"+id+\";\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 240,
-        "y": 380,
-        "wires": [
-            [
-                "8ddfaa4d5178a253"
+                "92f6452493d7b0cf",
+                "6995a3e2bf261b2a"
             ]
         ]
     },
@@ -475,48 +457,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 280,
-        "y": 460,
+        "x": 240,
+        "y": 560,
         "wires": [
             [
                 "9e45b50d7f79b14a"
             ]
-        ]
-    },
-    {
-        "id": "c660187d33f6c6c0",
-        "type": "function",
-        "z": "71d70956cd5f1433",
-        "name": "Extract the name accorfing to the Id",
-        "func": "msg.payload = msg.payload[0].Name;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 620,
-        "y": 380,
-        "wires": [
-            [
-                "abbea92d27bc1160"
-            ]
-        ]
-    },
-    {
-        "id": "3c8574cb9a03739d",
-        "type": "function",
-        "z": "71d70956cd5f1433",
-        "name": "Set the name Globally",
-        "func": "global.set('name', msg.payload);",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1000,
-        "y": 380,
-        "wires": [
-            []
         ]
     },
     {
@@ -525,8 +471,8 @@
         "z": "71d70956cd5f1433",
         "mydb": "f81072a5963a1ca4",
         "name": "",
-        "x": 450,
-        "y": 460,
+        "x": 410,
+        "y": 560,
         "wires": [
             [
                 "b392e9f2877db831"
@@ -557,8 +503,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
-        "y": 460,
+        "x": 600,
+        "y": 560,
         "wires": [
             [
                 "f752043ac4a293fb"
@@ -574,8 +520,8 @@
         "links": [
             "d649d4eda648f0e0"
         ],
-        "x": 775,
-        "y": 460,
+        "x": 745,
+        "y": 560,
         "wires": []
     },
     {
@@ -585,7 +531,8 @@
         "name": "link in 1",
         "links": [
             "28f2a0dfa66421da",
-            "f752043ac4a293fb"
+            "f752043ac4a293fb",
+            "605ab7fd5f91ca18"
         ],
         "x": 75,
         "y": 220,
@@ -626,11 +573,194 @@
         "wires": []
     },
     {
-        "id": "abbea92d27bc1160",
+        "id": "2ecdf9822e1d6c47",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Select Name accordong to ID",
+        "func": "global.set('id', msg.payload);\nvar id = global.get('id');\nmsg.topic = \"Select * from `new_schema`.`new_table_info`  Where id = \"+id+\";\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 420,
+        "wires": [
+            [
+                "ba397e122e484b7b"
+            ]
+        ]
+    },
+    {
+        "id": "6995a3e2bf261b2a",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "function 2",
+        "func": "var id = global.get('id')\nvar age = global.get('age')\nmsg.topic = \"UPDATE `new_schema`.`new_table_info` SET `Age` = '\"+age+\"' WHERE `id` = \"+id+\";\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 620,
+        "wires": [
+            [
+                "02fec8a711693459"
+            ]
+        ]
+    },
+    {
+        "id": "02fec8a711693459",
+        "type": "mysql",
+        "z": "71d70956cd5f1433",
+        "mydb": "f81072a5963a1ca4",
+        "name": "",
+        "x": 410,
+        "y": 620,
+        "wires": [
+            [
+                "efcb6b1bce6e458e"
+            ]
+        ]
+    },
+    {
+        "id": "efcb6b1bce6e458e",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Trigger select 2",
+        "func": "if (msg.payload.affectedRows == 1)\n{\n    msg.payload = true;\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 620,
+        "wires": [
+            [
+                "605ab7fd5f91ca18"
+            ]
+        ]
+    },
+    {
+        "id": "605ab7fd5f91ca18",
+        "type": "link out",
+        "z": "71d70956cd5f1433",
+        "name": "link out 3",
+        "mode": "link",
+        "links": [
+            "d649d4eda648f0e0"
+        ],
+        "x": 735,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "ba397e122e484b7b",
+        "type": "mysql",
+        "z": "71d70956cd5f1433",
+        "mydb": "f81072a5963a1ca4",
+        "name": "",
+        "x": 490,
+        "y": 420,
+        "wires": [
+            [
+                "52405c9147da7d3d"
+            ]
+        ]
+    },
+    {
+        "id": "52405c9147da7d3d",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Extract the info accorfing to the Id",
+        "func": "msg1 = {};\nmsg2 = {};\nmsg3 = {};\n\n\nmsg1.payload = msg.payload[0].id;\nmsg2.payload = msg.payload[0].Name;\nmsg3.payload = msg.payload[0].age;\nreturn [msg1, msg2, msg3];",
+        "outputs": 3,
+        "noerr": 3,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 420,
+        "wires": [
+            [
+                "0e94d394e65bf47b"
+            ],
+            [
+                "0da85b5ec527a5f1"
+            ],
+            [
+                "836eb3f649107b4e"
+            ]
+        ]
+    },
+    {
+        "id": "a10d16e307097ee9",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Set the name Globally",
+        "func": "global.set('name', msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0da85b5ec527a5f1",
         "type": "ui_text_input",
         "z": "71d70956cd5f1433",
         "name": "",
         "label": "Name",
+        "tooltip": "",
+        "group": "0851d8b33da7b635",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 990,
+        "y": 420,
+        "wires": [
+            [
+                "a10d16e307097ee9"
+            ]
+        ]
+    },
+    {
+        "id": "bec177851b2a065b",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Set the name Globally",
+        "func": "global.set('id', msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0e94d394e65bf47b",
+        "type": "ui_text_input",
+        "z": "71d70956cd5f1433",
+        "name": "",
+        "label": "ID",
         "tooltip": "",
         "group": "0851d8b33da7b635",
         "order": 2,
@@ -643,12 +773,55 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 830,
+        "x": 970,
         "y": 380,
         "wires": [
             [
-                "3c8574cb9a03739d"
+                "bec177851b2a065b"
             ]
+        ]
+    },
+    {
+        "id": "836eb3f649107b4e",
+        "type": "ui_text_input",
+        "z": "71d70956cd5f1433",
+        "name": "",
+        "label": "Age",
+        "tooltip": "",
+        "group": "0851d8b33da7b635",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 950,
+        "y": 460,
+        "wires": [
+            [
+                "693b41d2b48a33b3"
+            ]
+        ]
+    },
+    {
+        "id": "693b41d2b48a33b3",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Set the name Globally",
+        "func": "global.set('age', msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1160,
+        "y": 460,
+        "wires": [
+            []
         ]
     }
 ]
