@@ -354,23 +354,6 @@
         ]
     },
     {
-        "id": "df37d7f6d956bac8",
-        "type": "debug",
-        "z": "71d70956cd5f1433",
-        "name": "debug 2",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 680,
-        "y": 220,
-        "wires": []
-    },
-    {
         "id": "ee3fc32b27660f7d",
         "type": "function",
         "z": "71d70956cd5f1433",
@@ -773,7 +756,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 970,
+        "x": 990,
         "y": 380,
         "wires": [
             [
@@ -799,7 +782,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 950,
+        "x": 990,
         "y": 460,
         "wires": [
             [
@@ -823,5 +806,22 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "df37d7f6d956bac8",
+        "type": "debug",
+        "z": "71d70956cd5f1433",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 220,
+        "wires": []
     }
 ]
