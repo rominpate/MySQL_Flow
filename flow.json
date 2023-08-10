@@ -931,7 +931,8 @@
         "y": 580,
         "wires": [
             [
-                "b392e9f2877db831"
+                "b392e9f2877db831",
+                "6064b1b366d4f2c6"
             ]
         ]
     },
@@ -1026,7 +1027,7 @@
         "z": "71d70956cd5f1433",
         "mydb": "f81072a5963a1ca4",
         "name": "",
-        "x": 890,
+        "x": 850,
         "y": 920,
         "wires": [
             [
@@ -1292,6 +1293,175 @@
         "wires": [
             [
                 "0a95c549575d27c9"
+            ]
+        ]
+    },
+    {
+        "id": "982338278e577d60",
+        "type": "ui_button",
+        "z": "71d70956cd5f1433",
+        "name": "",
+        "group": "3a96d634b27aeeee",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Name",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 70,
+        "y": 1060,
+        "wires": [
+            [
+                "efed647607108fca"
+            ]
+        ]
+    },
+    {
+        "id": "efed647607108fca",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Name Sorting               ",
+        "func": "msg.topic = \"SELECT * FROM new_schema.new_table_info ORDER BY Name;\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 1060,
+        "wires": [
+            [
+                "0a95c549575d27c9"
+            ]
+        ]
+    },
+    {
+        "id": "6064b1b366d4f2c6",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "function 1",
+        "func": "msg.payload = \"Update Successful\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 640,
+        "wires": [
+            [
+                "3978bc31dc1c809f",
+                "1d850d0df2ec205a"
+            ]
+        ]
+    },
+    {
+        "id": "3978bc31dc1c809f",
+        "type": "ui_text",
+        "z": "71d70956cd5f1433",
+        "group": "0851d8b33da7b635",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "feedback",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1240,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "fad31277723073d9",
+        "type": "catch",
+        "z": "71d70956cd5f1433",
+        "name": "",
+        "scope": [
+            "46b1245df4a3c931"
+        ],
+        "uncaught": false,
+        "x": 690,
+        "y": 700,
+        "wires": [
+            [
+                "185ce08e7d6d3b00",
+                "1d850d0df2ec205a"
+            ]
+        ]
+    },
+    {
+        "id": "185ce08e7d6d3b00",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "function 2",
+        "func": "msg.payload = msg.error.message;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 700,
+        "wires": [
+            [
+                "3978bc31dc1c809f"
+            ]
+        ]
+    },
+    {
+        "id": "1d850d0df2ec205a",
+        "type": "delay",
+        "z": "71d70956cd5f1433",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 900,
+        "y": 760,
+        "wires": [
+            [
+                "383f6b83656590b4"
+            ]
+        ]
+    },
+    {
+        "id": "383f6b83656590b4",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "function 3",
+        "func": "msg.payload = \"______________________\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 760,
+        "wires": [
+            [
+                "3978bc31dc1c809f"
             ]
         ]
     }
