@@ -197,7 +197,7 @@
         "type": "function",
         "z": "71d70956cd5f1433",
         "name": "Insert",
-        "func": "var id = msg.payload.id;\nvar name = msg.payload.Name;\nvar age = msg.payload.Age;\nvar country = msg.payload.Country;\nvar height = msg.payload.Height;\n\nmsg.topic = 'INSERT INTO `new_schema`.`new_table_info`(`id`,`Name`,`age`,`Cuntry`,`Height`) VALUES('+id+',\"'+name+'\",'+age+',\"'+country+'\",'+height+');';\nreturn msg;",
+        "func": "var id = msg.payload.id;\nvar name = msg.payload.Name;\nvar age = msg.payload.Age;\nvar country = msg.payload.Country;\nvar height = msg.payload.Height;\n\nmsg.topic = 'INSERT INTO `new_schema`.`new_table_info`(`id`,`Name`,`age`,`Country`,`Height`) VALUES('+id+',\"'+name+'\",'+age+',\"'+country+'\",'+height+');';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -393,7 +393,7 @@
         "step": "1",
         "className": "",
         "x": 70,
-        "y": 420,
+        "y": 440,
         "wires": [
             [
                 "2ecdf9822e1d6c47"
@@ -424,8 +424,7 @@
         "y": 580,
         "wires": [
             [
-                "92f6452493d7b0cf",
-                "6995a3e2bf261b2a"
+                "92f6452493d7b0cf"
             ]
         ]
     },
@@ -433,16 +432,25 @@
         "id": "92f6452493d7b0cf",
         "type": "function",
         "z": "71d70956cd5f1433",
-        "name": "function 1",
-        "func": "var id = global.get('id')\nvar name = global.get('name')\nmsg.topic = \"UPDATE `new_schema`.`new_table_info` SET `Name` = '\"+name+\"' WHERE `id` = \"+id+\";\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
+        "name": "Function to set new values",
+        "func": "msg1 = {};\nmsg2 = {};\nmsg3 = {};\nmsg4 = {};\n\nvar id = global.get('id')\nvar name = global.get('name')\nvar age = global.get('age')\nvar country = global.get('country')\nvar height = global.get('height')\n\nmsg1.topic = \"UPDATE `new_schema`.`new_table_info` SET `Name` = '\" + name+ \"' WHERE `id` = \"+ id +\" ; \";\nmsg2.topic = \"UPDATE `new_schema`.`new_table_info` SET `Age` = \" + age + \" WHERE `id` = \"+id+\" ;\";\nmsg3.topic = \"UPDATE `new_schema`.`new_table_info` SET `Country` = '\" + country + \"' WHERE `id` = \" + id + \" ; \";\nmsg4.topic = \"UPDATE `new_schema`.`new_table_info` SET `Height` = \" + height + \" WHERE `id` = \" + id + \" ;\";\n\nreturn [msg1, msg2, msg3, msg4];",
+        "outputs": 4,
+        "noerr": 4,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 240,
-        "y": 560,
+        "x": 300,
+        "y": 580,
         "wires": [
+            [
+                "9e45b50d7f79b14a"
+            ],
+            [
+                "9e45b50d7f79b14a"
+            ],
+            [
+                "9e45b50d7f79b14a"
+            ],
             [
                 "9e45b50d7f79b14a"
             ]
@@ -454,8 +462,8 @@
         "z": "71d70956cd5f1433",
         "mydb": "f81072a5963a1ca4",
         "name": "",
-        "x": 410,
-        "y": 560,
+        "x": 550,
+        "y": 600,
         "wires": [
             [
                 "b392e9f2877db831"
@@ -486,8 +494,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
-        "y": 560,
+        "x": 720,
+        "y": 600,
         "wires": [
             [
                 "f752043ac4a293fb"
@@ -503,8 +511,8 @@
         "links": [
             "d649d4eda648f0e0"
         ],
-        "x": 745,
-        "y": 560,
+        "x": 885,
+        "y": 600,
         "wires": []
     },
     {
@@ -559,85 +567,20 @@
         "id": "2ecdf9822e1d6c47",
         "type": "function",
         "z": "71d70956cd5f1433",
-        "name": "Select Name accordong to ID",
-        "func": "global.set('id', msg.payload);\nvar id = global.get('id');\nmsg.topic = \"Select * from `new_schema`.`new_table_info`  Where id = \"+id+\";\";\nreturn msg;",
+        "name": "Select Row accordong to ID",
+        "func": "global.set('id', msg.payload);\nvar id = global.get('id');\nmsg.topic = \"Select * from `new_schema`.`new_table_info` Where id = \"+id+\";\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 260,
-        "y": 420,
+        "y": 440,
         "wires": [
             [
                 "ba397e122e484b7b"
             ]
         ]
-    },
-    {
-        "id": "6995a3e2bf261b2a",
-        "type": "function",
-        "z": "71d70956cd5f1433",
-        "name": "function 2",
-        "func": "var id = global.get('id')\nvar age = global.get('age')\nmsg.topic = \"UPDATE `new_schema`.`new_table_info` SET `Age` = '\"+age+\"' WHERE `id` = \"+id+\";\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 240,
-        "y": 620,
-        "wires": [
-            [
-                "02fec8a711693459"
-            ]
-        ]
-    },
-    {
-        "id": "02fec8a711693459",
-        "type": "mysql",
-        "z": "71d70956cd5f1433",
-        "mydb": "f81072a5963a1ca4",
-        "name": "",
-        "x": 410,
-        "y": 620,
-        "wires": [
-            [
-                "efcb6b1bce6e458e"
-            ]
-        ]
-    },
-    {
-        "id": "efcb6b1bce6e458e",
-        "type": "function",
-        "z": "71d70956cd5f1433",
-        "name": "Trigger select 2",
-        "func": "if (msg.payload.affectedRows == 1)\n{\n    msg.payload = true;\n    return msg;\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 600,
-        "y": 620,
-        "wires": [
-            [
-                "605ab7fd5f91ca18"
-            ]
-        ]
-    },
-    {
-        "id": "605ab7fd5f91ca18",
-        "type": "link out",
-        "z": "71d70956cd5f1433",
-        "name": "link out 3",
-        "mode": "link",
-        "links": [
-            "d649d4eda648f0e0"
-        ],
-        "x": 735,
-        "y": 620,
-        "wires": []
     },
     {
         "id": "ba397e122e484b7b",
@@ -646,10 +589,11 @@
         "mydb": "f81072a5963a1ca4",
         "name": "",
         "x": 490,
-        "y": 420,
+        "y": 440,
         "wires": [
             [
-                "52405c9147da7d3d"
+                "52405c9147da7d3d",
+                "2454f83568947cc6"
             ]
         ]
     },
@@ -658,14 +602,14 @@
         "type": "function",
         "z": "71d70956cd5f1433",
         "name": "Extract the info accorfing to the Id",
-        "func": "msg1 = {};\nmsg2 = {};\nmsg3 = {};\n\n\nmsg1.payload = msg.payload[0].id;\nmsg2.payload = msg.payload[0].Name;\nmsg3.payload = msg.payload[0].age;\nreturn [msg1, msg2, msg3];",
-        "outputs": 3,
-        "noerr": 3,
+        "func": "msg1 = {};\nmsg2 = {};\nmsg3 = {};\nmsg4 = {};\nmsg5 = {};\n\n\nmsg1.payload = msg.payload[0].id;\nmsg2.payload = msg.payload[0].Name;\nmsg3.payload = msg.payload[0].age;\nmsg4.payload = msg.payload[0].Country;\nmsg5.payload = msg.payload[0].Height;\n\nreturn [msg1, msg2, msg3, msg4, msg5];",
+        "outputs": 5,
+        "noerr": 5,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
-        "y": 420,
+        "x": 760,
+        "y": 440,
         "wires": [
             [
                 "0e94d394e65bf47b"
@@ -675,6 +619,12 @@
             ],
             [
                 "836eb3f649107b4e"
+            ],
+            [
+                "d35cab307cc082eb"
+            ],
+            [
+                "586a4765934d1fb5"
             ]
         ]
     },
@@ -682,15 +632,15 @@
         "id": "a10d16e307097ee9",
         "type": "function",
         "z": "71d70956cd5f1433",
-        "name": "Set the name Globally",
+        "name": "Set the Name Globally",
         "func": "global.set('name', msg.payload);",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1160,
-        "y": 420,
+        "x": 1240,
+        "y": 400,
         "wires": [
             []
         ]
@@ -713,8 +663,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 990,
-        "y": 420,
+        "x": 1030,
+        "y": 400,
         "wires": [
             [
                 "a10d16e307097ee9"
@@ -725,15 +675,15 @@
         "id": "bec177851b2a065b",
         "type": "function",
         "z": "71d70956cd5f1433",
-        "name": "Set the name Globally",
+        "name": "Set the id Globally",
         "func": "global.set('id', msg.payload);",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1160,
-        "y": 380,
+        "x": 1230,
+        "y": 360,
         "wires": [
             []
         ]
@@ -756,8 +706,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 990,
-        "y": 380,
+        "x": 1030,
+        "y": 360,
         "wires": [
             [
                 "bec177851b2a065b"
@@ -782,8 +732,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 990,
-        "y": 460,
+        "x": 1030,
+        "y": 440,
         "wires": [
             [
                 "693b41d2b48a33b3"
@@ -794,15 +744,15 @@
         "id": "693b41d2b48a33b3",
         "type": "function",
         "z": "71d70956cd5f1433",
-        "name": "Set the name Globally",
+        "name": "Set the Age Globally",
         "func": "global.set('age', msg.payload);",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1160,
-        "y": 460,
+        "x": 1240,
+        "y": 440,
         "wires": [
             []
         ]
@@ -823,5 +773,155 @@
         "x": 680,
         "y": 220,
         "wires": []
+    },
+    {
+        "id": "d35cab307cc082eb",
+        "type": "ui_text_input",
+        "z": "71d70956cd5f1433",
+        "name": "",
+        "label": "Country",
+        "tooltip": "",
+        "group": "0851d8b33da7b635",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1040,
+        "y": 480,
+        "wires": [
+            [
+                "2fc663d66e48b5c7"
+            ]
+        ]
+    },
+    {
+        "id": "586a4765934d1fb5",
+        "type": "ui_text_input",
+        "z": "71d70956cd5f1433",
+        "name": "",
+        "label": "Height",
+        "tooltip": "",
+        "group": "0851d8b33da7b635",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1030,
+        "y": 520,
+        "wires": [
+            [
+                "7a6d41c956f23624"
+            ]
+        ]
+    },
+    {
+        "id": "2454f83568947cc6",
+        "type": "debug",
+        "z": "71d70956cd5f1433",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "2fc663d66e48b5c7",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Set the Country Globally",
+        "func": "global.set('country', msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1250,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7a6d41c956f23624",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Set the Height Globally",
+        "func": "global.set('height', msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8ea4051a270b52a0",
+        "type": "ui_button",
+        "z": "71d70956cd5f1433",
+        "name": "",
+        "group": "0851d8b33da7b635",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Delete",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 70,
+        "y": 660,
+        "wires": [
+            [
+                "9211b0afe414f5f5"
+            ]
+        ]
+    },
+    {
+        "id": "9211b0afe414f5f5",
+        "type": "function",
+        "z": "71d70956cd5f1433",
+        "name": "Function to Delete the Row according id",
+        "func": "var id = global.get('id')\nmsg.topic = \"DELETE FROM `new_schema`.`new_table_info` WHERE `id` = \" + id + \";\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 660,
+        "wires": [
+            [
+                "9e45b50d7f79b14a"
+            ]
+        ]
     }
 ]
