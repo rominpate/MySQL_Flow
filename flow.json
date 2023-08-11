@@ -1272,7 +1272,7 @@
             },
             {
                 "label": "None",
-                "value": "",
+                "value": "id",
                 "type": "str"
             }
         ],
@@ -1715,8 +1715,8 @@
         "group": "f43e57f36ee2faf7",
         "name": "",
         "order": 1,
-        "width": "9",
-        "height": "7",
+        "width": "0",
+        "height": "0",
         "format": "<html>\n\n<head>\n    <style>\n        #history {\n            font-family: \"Arial\";\n            border-collapse: collapse;\n            width: 100%;\n        }\n\n        #history td,\n        #history th {\n            border: 1px solid #ffffff;\n            padding: 8px;\n        }\n\n        #history tr:nth-child(even) {\n            background-color: #ffffff;\n        }\n\n        #history tr:hover {\n            background-color: #73E0FD;\n        }\n\n        #history th {\n            padding-top: 12px;\n            padding-bottom: 12px;\n            text-align: center;\n            background-color: #A8E7FC;\n            color: black;\n        }\n    </style>\n</head>\n\n<body>\n    <table id=\"history\" border=\"1\">\n        <tr align=\"center\">\n            <th>Min Age</th>\n            <th>Max Age</th>\n            <th>Avg Age</th>\n        </tr>\n        <tbody>\n            <tr align=\"center\" ng-repeat=\"row in msg.payload\">\n                <th>{{msg.payload[0].Min}}</th>\n                <th>{{msg.payload[0].Max}}</th>\n                <th>{{msg.payload[0].Avg}}</th>\n            </tr>\n        </tbody>\n    </table>\n</body>\n\n</html>",
         "storeOutMessages": true,
         "fwdInMessages": true,
